@@ -1,0 +1,7 @@
+1. Home Page: `URL: /
+    1.1 `Add New User` button -> Create new  Userpage will open
+    1.2 `Users List `button -> `Show all user list and also add edit and delete Button.
+    Note: [ Delete the Button with consent to `Are you sure you want to delete, if yes then delete ]
+    1.3 Create new user page -> username, Email, Password, Role `take these details of the user and save it.
+    1.4 Apply RBAC(Role-Based Access Control) to users.  
+    

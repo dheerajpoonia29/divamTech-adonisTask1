@@ -1,0 +1,23 @@
+@layout('welcome')
+
+@section('title')
+User Delete Page
+@endsection 
+
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Remove User</h1>
+    <div class='text-center'>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+    
+    <p class="lead">Press remove to delete user, back to cancel</p>
+    <div class='row'>
+        {{--  route('UserController.read')  --}}
+        <a class="col mt-4 mr-4 btn btn-info btn-lg text-white" href="{{ route('/user/list') }}" role="button">Back</a>
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('UserController.delete', { id: user.id }) }}" role="button">Remove</a>
+    </div>
+</div> 
+@endsection

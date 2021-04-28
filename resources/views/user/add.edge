@@ -1,0 +1,47 @@
+@layout('welcome')
+
+@section('title')
+Add User Page
+@endsection
+
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Add New User</h1>
+    <div class='text-center'>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+    
+    <p class="lead">Fill detail and submit form</p>
+    <div class="container border bg-light">
+        <form action="{{ route('UserController.create') }}" method="POST" class='p-3'> 
+            {{ csrfField() }}
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label'>Username</label>
+                <input name="username" type="text" class="form-control col-lg-9" placeholder="enter username"/>
+                <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label'>Email</label>
+                <input name="email" type="email" class="form-control col-lg-9" placeholder="enter your valid email"/>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label'>Role</label>
+                <select name="isAdmin" class="form-control col-lg-9" id="exampleFormControlSelect1">
+                    <option value='1'>Admin</option>
+                    <option value='0' selected="selected">Employee</option>
+                  </select>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label'>Password</label>
+                <input name="password" type="text" class="form-control col-lg-9" placeholder="enter strong password"/>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <button type="submit" class="btn btn-info float-right">Submit</button>
+        </form>
+    </div>
+</div>
+@endsection

@@ -1,0 +1,59 @@
+{{--  List td Code  --}}
+<!-- Button trigger edit modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-list-edit">
+    <i class="bi bi-credit-card-2-front-fill"></i>
+  </button>
+  @!component('components/modal_edit',{
+    title: 'Update user',                
+    username: 'static user',
+    email: 'static email'
+  })
+</td>
+<td>
+  <!-- Button trigger remove modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-list-remove">
+    <i class="bi bi-person-dash-fill"></i>
+  </button>
+  @component('components/modal_remove',{title: 'Are you sure to remove'})
+    @slot('body')
+      <ul>
+        <li> <label>User name: </label> {{user.username}}  </li>
+        <li> <label>Email: </label> {{user.email}} </li>
+      </ul>
+    @endslot
+  @endcomponent
+
+
+
+{{--  edit help  --}}
+<div class="modal fade" id="list-edit-model" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want to remove</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="#" method="POST" class='p-3'> 
+            {{--  {{ csrfField() }}  --}}
+            <div class="modal-body">                                
+                    <div class='row form-group'>
+                        <label class='col-lg-3 col-form-label'>Username</label>
+                        <input name="username" value={{username}} type="text" class="form-control col-lg-9" placeholder="enter username"/>
+                        <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+                    </div>
+                    <div class='row form-group'>
+                        <label class='col-lg-3 col-form-label'>Email</label>
+                        <input name="email" value="{{email}}" type="email" class="form-control col-lg-9" placeholder="enter your valid email"/>
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-secondary" data-dismiss="modal">Close</a>
+                <button class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

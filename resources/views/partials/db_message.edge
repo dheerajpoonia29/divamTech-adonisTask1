@@ -1,0 +1,15 @@
+@if(flashMessage('success'))  
+    <div class="p-3 mb-2 rounded-pill bg-success text-white">        
+        <span>{{ flashMessage('success') }}</span>
+    </div>
+@endif
+@if(flashMessage('danger'))  
+    <div class="p-3 mb-2 rounded-pill bg-danger text-white">        
+        <span>{{ flashMessage('danger') }}</span>
+    </div>
+@endif
+@if(flashMessage('warning'))  
+    <div class="p-3 mb-2 rounded-pill bg-warning text-white">        
+        <span>{{ flashMessage('warning') }}</span>
+    </div>
+@endif

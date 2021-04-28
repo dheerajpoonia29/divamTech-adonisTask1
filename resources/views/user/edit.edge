@@ -1,0 +1,39 @@
+@layout('welcome')
+
+@section('title')
+User Edit Page
+@endsection 
+
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Edit User</h1>
+    <div class='text-center'>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+    
+    <p class="lead">Edit detail and submit form</p>
+    <div class="container border bg-light">
+        <form action="{{ route('UserController.update') }}" method="POST" class='p-3'> 
+            {{ csrfField() }}                                       
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label'>Id</label>
+                <input name="userid" value="{{userid}}"  type="text" class="form-control col-lg-9" placeholder="enter username" readonly/>
+                <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label'>Username</label>
+                <input name="username" value="{{username}}"  type="text" class="form-control col-lg-9" placeholder="enter username"/>
+                <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label'>Email</label>
+                <input name="email" value="{{email}}" type="text" class="form-control col-lg-9" placeholder="enter your valid email"/>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <button type="submit" class="btn btn-info float-right">Submit</button>
+        </form>
+    </div>            
+</div>
+@endsection

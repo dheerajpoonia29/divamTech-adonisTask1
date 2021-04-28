@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+  </head>
+  <body>
+    <h1> working </h1>
+    @component('components.modal_test', { title: 'Terms & Conditions' })
+      @slot('trigger')
+        <button> Click here to view terms & conditions </button>
+      @endslot
+    
+      @slot('body')
+        <div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleif end gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. </p>
+        </div>
+      @endslot
+    
+      @slot('actions')
+        <button class="button is-success">Accept</button>
+        <button class="button">Cancel</button>
+      @endslot
+    @endcomponent
+  </body>
+</html>

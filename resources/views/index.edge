@@ -1,0 +1,22 @@
+@layout('welcome')
+
+@section('title')
+Index Page
+@endsection
+
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Welcome You!</h1>  
+    <div class='text-center'>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+
+    <p class="lead">Select your operation</p>
+    <div class='row'>
+        <a class="col mt-4 mr-4 btn btn-info btn-lg text-white" href="{{ route('/user/add') }}" role="button">Add User</a>
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('UserController.read') }}" role="button">List Users</a>
+    </div>
+</div>
+@endsection
