@@ -42,10 +42,11 @@ List User Page
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-list-edit">
                   <i class="bi bi-credit-card-2-front-fill"></i>
                 </button>
-                @include('components/modal_edit',{
+                @component('components/modal_edit',{
                   username: user.username,
                   email: user.email
                 })
+                @endcomponent
                 </td>   
               </td>
               <td>
