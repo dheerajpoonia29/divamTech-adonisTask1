@@ -1,0 +1,50 @@
+@layout('welcome')
+
+@section('title')
+Add User Page
+@endsection
+
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Add New User</h1>
+    <div>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+    
+    <p class="lead">Fill detail and submit form</p>
+    <div class="container border bg-light">
+        <form action="{{ route('user-add') }}" method="POST" class='p-3'> 
+            {{ csrfField() }}
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label form-control-label'>Username</label>
+                <input name="username" type="text" class="form-control col-lg-9" placeholder="enter username"/>
+                <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label form-control-label'>Email</label>
+                <input name="email" type="email" class="form-control col-lg-9" placeholder="enter your valid email"/>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label form-control-label'>Role</label>
+                <select name="role" class="custom-select col-lg-9" id="exampleFormControlSelect1" required>   
+                    <option value=''>Choose your role</option>                 
+                    <option value='admin'>Admin</option>
+                    <option value='manager'>Manager</option>
+                    <option value='employee'>Employee</option>
+                  </select>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label form-control-label'>Password</label>
+                <input name="password" type="text" class="form-control col-lg-9" placeholder="enter strong password"/>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <a type="submit" class="btn btn-info float-left" href="{{ route('/') }}">Back</a>
+            <button type="submit" class="btn btn-info float-right">Submit</button>
+        </form>
+    </div>
+</div>
+@endsection

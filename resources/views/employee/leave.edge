@@ -1,0 +1,26 @@
+@layout('welcome')
+
+@section('title')
+User Edit Page
+@endsection 
+
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Leave Application</h1>
+    <div>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+    <p class="lead">Leave Form</p>
+    <div class="container border bg-light">
+        @include('partials.leave_form')
+    </div>            
+
+    <hr class="my-4">
+    <p class="lead">Leave Status</p>
+    <div class="container border bg-light">
+        @include('partials.leave_status')
+    </div>            
+</div>
+@endsection

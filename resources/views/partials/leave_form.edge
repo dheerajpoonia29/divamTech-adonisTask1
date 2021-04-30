@@ -1,0 +1,44 @@
+<form action="{{ route('leave-add') }}" method="POST" class='p-3'> 
+    {{ csrfField() }}                                       
+    <div class='row form-group'>
+        <label class='col-lg-3 col-form-label form-control-label'>Id</label>
+        <input name="emp_id" type="text" value="{{auth.user.id}}" class="form-control col-lg-9" placeholder="enter subject" readonly/>
+        <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+    </div>
+    <div class='row form-group'>
+        <label class='col-lg-3 col-form-label form-control-label'>Username</label>
+        <input name="emp_username" type="text" value="{{auth.user.username}}" class="form-control col-lg-9" placeholder="enter subject" readonly/>
+        <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+    </div>
+    <div class='row form-group'>
+        <label class='col-lg-3 col-form-label form-control-label'>Subject</label>
+        <input name="subject" type="text" class="form-control col-lg-9" placeholder="enter subject"/>
+        <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+    </div>
+    <div class='row form-group'>
+        <label class='col-lg-3 col-form-label form-control-label'>Description</label>
+        <textarea name="description" class="form-control col-lg-9"> </textarea>
+        <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+    </div>
+    <div class='row form-group'>
+        <label class='col-lg-3 col-form-label form-control-label'>Start Date</label>
+        <input name="start_date" type="date" class="form-control col-lg-9" placeholder="enter description"/>
+        <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+    </div>
+    <div class='row form-group'>
+        <label class='col-lg-3 col-form-label form-control-label'>End Date</label>
+        <input name="end_date" type="date" class="form-control col-lg-9" placeholder="enter description"/>
+        <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+    </div>
+    <div class='row form-group'>
+        <label class='col-lg-3 col-form-label form-control-label'>Role</label>
+        <select name="manager_id" class="custom-select col-lg-9" id="exampleFormControlSelect1" required>   
+            <option value=''>Select manager under you applying ...</option>                 
+            @each(manager in managers)
+            <option value='{{manager.id}}'>{{manager.username}}</option>
+            @endeach 
+          </select>
+        <small id="emailHelp" class="form-text text-muted"></small>
+    </div>
+    <button type="submit" class="btn btn-info float-right">Submit</button>
+</form>

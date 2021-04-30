@@ -1,0 +1,65 @@
+@layout('welcome')
+
+@section('title')
+User Edit Page
+@endsection 
+
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Edit User</h1>
+    <div>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+    
+    <p class="lead">Edit detail and submit form</p>
+    <div class="container border bg-light">
+        <form action="{{ route('edit', {id: user.id}) }}" method="POST" class='p-3'> 
+            {{ csrfField() }}                                       
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label form-control-label'>Id</label>
+                <input name="userid" value="{{user.id}}"  type="text" class="form-control col-lg-9" placeholder="enter username" readonly/>
+                <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label form-control-label'>Username</label>
+                <input name="username" value="{{user.username}}"  type="text" class="form-control col-lg-9" placeholder="enter username"/>
+                <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label form-control-label'>Email</label>
+                <input name="email" value="{{user.email}}" type="text" class="form-control col-lg-9" placeholder="enter your valid email"/>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <div class='row form-group'>
+                <label class='col-lg-3 col-form-label form-control-label'>Role</label>
+                <select name="role" class="form-control col-lg-9" id="exampleFormControlSelect1">                                        
+                    <option                         
+                        value='admin'
+                        @if(user.role==='admin')
+                        selected="selected"
+                        @endif
+                    >Admin</option>
+                    <option 
+                        value='manager' 
+                        @if(user.role==='manager')
+                        selected="selected"
+                        @endif
+                    >
+                        Manager</option>
+                    <option 
+                        value='employee' 
+                        @if(user.role==='employee')
+                        selected="selected"
+                        @endif
+                    >Employee</option>
+                  </select>
+                <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <a class="btn btn-info float-left" href="{{ route('/admin/user/list') }}">Cancel</a>
+            <button type="submit" class="btn btn-info float-right">Submit</button>
+        </form>
+    </div>            
+</div>
+@endsection

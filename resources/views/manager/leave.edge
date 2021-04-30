@@ -1,0 +1,62 @@
+@layout('welcome')
+
+@section('title')
+Manager Leave Page
+@endsection 
+
+@section('content')
+<div class="jumbotron">
+    <h1 class="display-4">Leave Management</h1>
+    <div>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+    
+    <p class="lead">Manager approve leave here</p>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Emp Name</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Description</th>      
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>            
+            <th scope="col">Curr Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(leave in leaves)
+          <tr>
+            <th scope="row">{{ ($loop.index + 1) }}</th>
+            <td>{{leave.username}}</td>
+            <td>{{leave.subject}}</td>
+            <td colspan="2">{{leave.description}}</td>
+            <td>{{leave.start_date}}</td>
+            <td>{{leave.end_date}}</td>
+            <td>{{leave.manager}}</td>
+            <td>{{leave.status}}</td>
+            <td>
+                <form action="{{ route('leave-update') }}" method="POST" class='p-3'> 
+                    {{ csrfField() }}                                       
+                    <div class='row form-group'>
+                        <select name="role" class="custom-select" id="exampleFormControlSelect1" required>   
+                            <option value="">Update status</option>                 
+                            <option value='under_review'>under_review</option>
+                            <option value='grant'>grant</option>
+                            <option value='cancelled'>cancelled</option>
+                          </select>
+                    </div>
+                    <button type="submit" class="btn btn-info float-right">Update</button>
+                </form>
+            </td>
+          </tr>
+          @endeach
+        </tbody>
+    </table>
+    <a class="btn btn-info float-right" href="{{route('/')}}">Back</a>
+    </div>
+</div> 
+@endsection

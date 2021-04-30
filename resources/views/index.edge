@@ -1,0 +1,39 @@
+@layout('welcome')
+
+@section('title')
+Index Page
+@endsection
+
+@section('content')
+<div class="jumbotron">
+    
+    @loggedIn
+    <h1 class="display-4"> Hello "{{ auth.user.username }}" Id "{{ auth.user.id }}" </h1> 
+    @else
+    <h1 class="display-4"> Welcome You! </h1>  
+    @endloggedIn
+
+    <div>
+        @include('partials.db_message')
+    </div>
+
+    <hr class="my-4">
+
+    @loggedIn        
+    <p class="lead">Select your operation</p>
+    <div class='row'>
+        {{--  @if({{ flashMessage('role') }})  --}}
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('user-add-page') }}">Add User</a>
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('user-show-page') }}" role="button">Manage Users</a>
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('grant-leave-page') }}" role="button">Grant Leave</a>
+        {{--  @else  --}}
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('task-page') }}" role="button">Project Sprint</a>
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('leave-page') }}" role="button">Apply Leave</a>
+        {{--  @endif  --}}
+    </div>
+    @else 
+    <p class="lead">Please login or ask your admin to create account</p>
+    @endloggedIn
+
+</div>
+@endsection
