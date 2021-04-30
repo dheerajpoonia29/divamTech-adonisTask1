@@ -1,28 +1,37 @@
-<table class="table table-hover">
-    <thead>
+<table class="table table-hover table-sm">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Subject</th>
         <th scope="col">Description</th>      
-        <th scope="col">Date</th>
-        <th scope="col">Date</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
         <th scope="col">Manager</th>
         <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
       @each(leave in leaves)
-      <tr>
-        <th scope="row">{{ ($loop.index + 1) }}</th>
-        <td>{{leave.subject}}</td>
-        <td>{{leave.description}}</td>
-        <td>{{leave.start_date}}</td>
-        <td>{{leave.end_date}}</td>
-        <td>{{leave.manager}}</td>
-        <td>{{leave.status}}</td>
-      </tr>
+        @if(leave.status==='grant')
+            <tr class="bg-success">
+                @include('partials.employee_leave_status_loop')
+            </tr>
+        @elseif(leave.status==='apply')
+            <tr class="bg-info">
+                @include('partials.employee_leave_status_loop')
+            </tr>          
+        @elseif(leave.status==='review')
+            <tr class="bg-warning">
+                @include('partials.employee_leave_status_loop')
+            </tr>          
+        @else
+            {{--  cancel  --}}
+            <tr class="bg-danger">
+                @include('partials.employee_leave_status_loop')
+            </tr>
+        @endif
       @endeach
     </tbody>
 </table>
-<a class="btn btn-info float-right" href="{{route('/')}}">Back</a>
+<a class="btn btn-info float-right" href="{{route('goto-home')}}">Back</a>
 </div>

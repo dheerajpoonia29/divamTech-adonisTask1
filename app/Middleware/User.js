@@ -10,9 +10,9 @@ class User {
    * @param {Function} next
    */
   async handle ({ request }, next) {
-    // call next to advance the request
-    console.log("i'm inside user")
+    // call next to advance the request    
     await next()
+    console.log('middleware called')
   }
 }
 

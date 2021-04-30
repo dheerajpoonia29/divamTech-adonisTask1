@@ -5,7 +5,7 @@ const Schema = use('Schema')
 
 class tableSchema extends Schema {
   up () {
-    this.create('leave', (table) => {
+    this.create('leaves', (table) => {
       table.increments()
       table.integer('employee_id').notNullable()
       table.string('username', 100).notNullable()
@@ -15,7 +15,7 @@ class tableSchema extends Schema {
       table.date('start_date').notNullable()
       table.date('end_date').notNullable()
       table.integer('manager_id').notNullable()
-      table.string('status', 50).defaultTo('applied')
+      table.string('status', 50).defaultTo('apply')
       table.boolean('isDeleted').notNullable().defaultTo(false)
       table.timestamps()
     })

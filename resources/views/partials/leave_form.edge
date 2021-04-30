@@ -2,12 +2,12 @@
     {{ csrfField() }}                                       
     <div class='row form-group'>
         <label class='col-lg-3 col-form-label form-control-label'>Id</label>
-        <input name="emp_id" type="text" value="{{auth.user.id}}" class="form-control col-lg-9" placeholder="enter subject" readonly/>
+        <input name="employee_id" type="text" value="{{auth.user.id}}" class="form-control col-lg-9" placeholder="enter subject" readonly/>
         <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
     </div>
     <div class='row form-group'>
         <label class='col-lg-3 col-form-label form-control-label'>Username</label>
-        <input name="emp_username" type="text" value="{{auth.user.username}}" class="form-control col-lg-9" placeholder="enter subject" readonly/>
+        <input name="username" type="text" value="{{auth.user.username}}" class="form-control col-lg-9" placeholder="enter subject" readonly/>
         <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
     </div>
     <div class='row form-group'>
@@ -31,7 +31,7 @@
         <small id="emailHelp" class="form-text text-danger col-lg-12 text-right"></small>
     </div>
     <div class='row form-group'>
-        <label class='col-lg-3 col-form-label form-control-label'>Role</label>
+        <label class='col-lg-3 col-form-label form-control-label'>Manager</label>
         <select name="manager_id" class="custom-select col-lg-9" id="exampleFormControlSelect1" required>   
             <option value=''>Select manager under you applying ...</option>                 
             @each(manager in managers)

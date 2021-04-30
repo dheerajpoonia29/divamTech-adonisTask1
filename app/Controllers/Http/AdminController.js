@@ -21,15 +21,13 @@ class UserController {
         }
         
         session.flash({ success: res_success, danger: res_danger, warning: res_warning});
-        return response.redirect('/')
+        return response.redirect('/home')
     }
 
     async read({view, session}) {
         console.log('read => ')
 
-        let data = await Database
-                            .table('users')
-                            .select('*')
+        let data = await Database.table('users').select('*')
 
         res_success=null; res_danger=null; res_warning=null;
         session.flash({ success: res_success, danger: res_danger, warning: res_warning});
@@ -72,14 +70,25 @@ class UserController {
         return response.redirect('/admin/user/list');
     }
 
-    async login({response, view, request, session, auth}) {
+    async login({response, request, view, session, auth}) {
+        console.log('controller called = ', request.all())
         try {
             const { email, password } = request.all();
-            await auth.attempt(email, password);  
+            await auth.attempt(email, password);
 
             res_success='Login successfully'; res_danger=null; res_warning=null;
+            
+            let user = await User.find(auth.user.id);
+            user = user.toJSON();
+            session.put('user_role', user.role);            
+
             session.flash({ success: res_success, danger: res_danger, warning: res_warning});
-            return response.redirect('/')
+            if(user.role==='admin')
+                return response.redirect('/admin-page')
+            else if(user.role==='manager')
+                return response.redirect('/manager-page')
+            else    
+                return response.redirect('/employee-page')
 
         } catch (error) {
             res_success=null; res_danger='Given credentials does not match'; res_warning=null;
@@ -90,6 +99,7 @@ class UserController {
 
     async logout({response, auth, session}){
         await auth.logout()
+        session.clear()
 
         res_success=null; res_danger=null; res_warning='Logout successfully';
         session.flash({ success: res_success, danger: res_danger, warning: res_warning});
@@ -100,6 +110,18 @@ class UserController {
     async edit({ params, view}) {
         const data = await User.find(params.id);
         return view.render('admin.edit', {user: data});
+    }
+
+    async homeRedirect({response, session}){
+        let role = session.get('user_role')
+        if(role==='admin')
+            return response.redirect('/admin-page')
+        else if(role==='manager')
+            return response.redirect('/manager-page')
+        else  if(role==='employee')  
+            return response.redirect('/employee-page')
+        else    
+            return response.redirect('/')
     }
 }
 

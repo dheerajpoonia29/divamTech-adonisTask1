@@ -18,6 +18,11 @@ const Route = use('Route')
 
 // HOME PAGE ROUTE
 Route.on('/').render('index')
+Route.on('/admin-page').render('admin').middleware(['auth']);
+Route.on('/manager-page').render('manager').middleware(['auth']);
+Route.on('/employee-page').render('employee').middleware(['auth']);
+Route.get('/home', 'AdminController.homeRedirect').as('goto-home')
+
 
 // AUTH ROUTE
 Route.group(()=>{
@@ -28,25 +33,26 @@ Route.group(()=>{
 
 // ADMIN ROUTES
 Route.group(() => {
-    Route.get('/list', 'AdminController.read').as('user-show-page')
+    Route.get('/list', 'AdminController.read').as('user-manage-page')
         Route.on('/add').render('admin.add').as('user-add-page')
         Route.post('/add', 'AdminController.create').as('user-add')                          
         Route.get('/edit/:id', 'AdminController.edit').as('user-edit-page')      
-        Route.post('/edit/:id', 'AdminController.update').as('edit')                      
+        Route.post('/edit/:id', 'AdminController.update').as('user-edit')                      
         Route.get('/delete/confirm/:id', ({view, params}) => {return view.render('admin.delete', {userid: params.id})}).as('user-delete-page')   
-        Route.get('/delete/:id', 'AdminController.delete').as('delete')
-}).prefix('/admin/user');
+        Route.get('/delete/:id', 'AdminController.delete').as('user-delete')
+}).prefix('/admin/user').middleware(['auth']);
 
 // MANAGER ROUTES
 Route.group(()=>{
-    Route.get('/leave', 'ManagerController.read').as('grant-leave-page')
-    Route.post('/leave', 'ManagerController.update').as('leave-update')
-}).prefix('/manager')
+    Route.get('/list', 'ManagerController.readUser').as('user-check-page')
+    Route.get('/leave', 'ManagerController.readLeave').as('grant-leave-page')
+    Route.post('/leave/:id', 'ManagerController.update').as('leave-update')
+}).prefix('/manager').middleware(['auth']);
 
 // EMPLOYEE ROUTES
 Route.group(()=>{
     Route.on('/task').render('employee.task').as('task-page')
     Route.get('/leave', 'EmployeeController.read').as('leave-page')
     Route.post('/leave', 'EmployeeController.create').as('leave-add')
-}).prefix('/employee')
+}).prefix('/employee').middleware(['auth']);
 

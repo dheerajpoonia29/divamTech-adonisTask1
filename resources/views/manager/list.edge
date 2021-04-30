@@ -6,14 +6,14 @@ List User Page
 
 @section('content')
 <div class="jumbotron">
-    <h1 class="display-4">User Management</h1>
+    <h1 class="display-4">All User</h1>
     <div>
         @include('partials.db_message')
     </div>
 
     <hr class="my-4">
     
-    <p class="lead">Admin edit and remove user here</p>
+    <p class="lead">Here is use of company</p>
     <table class="table table-hover">
         <thead>
           <tr>
@@ -21,12 +21,6 @@ List User Page
             <th scope="col">User</th>
             <th scope="col">Email</th>  
             <th scope="col">Role</th>     
-
-            {{--  @if({{auth.user.isAdmin}})   --}}
-            @if(true)
-              <th scope="col">Admin Edit</th>           
-              <th scope="col">Admin Remove</th>          
-            @endif
           </tr>
         </thead>
         <tbody>
@@ -36,20 +30,6 @@ List User Page
             <td>{{user.username}}</td>
             <td>{{user.email}}</td>
             <td>{{user.role}}</td>
-
-            {{--  @if({{auth.user.isAdmin}})   --}}
-            @if(true)
-              <td>
-                <a class="btn btn-info" href="{{ route('user-edit-page', {id: user.id}) }}">
-                  edit
-                </a>     
-              </td>
-              <td>
-                <a class="btn btn-info" href="{{ route('user-delete-page', {id: user.id}) }}">
-                  remove
-                </a>
-              </td>
-            @endif
           </tr>
           @endeach
         </tbody>

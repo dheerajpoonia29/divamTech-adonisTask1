@@ -1,0 +1,21 @@
+<th scope="row">{{ ($loop.index + 1) }}</th>
+<td>{{leave.username}}</td>
+<td>{{leave.subject}}</td>
+<td>{{leave.description}}</td>
+<td>{{leave.start_date}}</td>
+<td>{{leave.end_date}}</td>
+<td>{{leave.status}}</td>
+<td>
+    <form action="{{ route('leave-update', {id: leave.id}) }}" method="POST" class='p-3'> 
+        {{ csrfField() }}                                       
+        <div class='row form-group'>
+            <select name="status" class="custom-select" id="exampleFormControlSelect1" required>   
+                <option value="">Update status ....</option>                 
+                <option value='grant'>grant leave</option>
+                <option value='review'>put under review</option>                
+                <option value='cancel'>cancel leave</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark float-right">Update</button>
+    </form>
+</td>

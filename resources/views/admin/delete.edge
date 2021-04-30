@@ -17,7 +17,7 @@ User Delete Page
     <div class='row'>
         {{--  route('UserController.read')  --}}
         <a class="col mt-4 mr-4 btn btn-info btn-lg text-white" href="{{ route('user-show-page') }}" role="button">Cancel</a>
-        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('delete', {id: userid}) }}" role="button">Remove</a>
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('user-delete', {id: userid}) }}" role="button">Remove</a>
     </div>
 </div> 
 @endsection

@@ -1,16 +1,16 @@
 @layout('welcome')
 
 @section('title')
-Index Page
+Manager Page
 @endsection
 
 @section('content')
 <div class="jumbotron">
     
     @loggedIn
-    <h1 class="display-4"> Hello "{{ auth.user.username }}"</h1> 
+    <h1 class="display-4"> Hello Manager "{{ auth.user.username }}"</h1> 
     @else
-    <h1 class="display-4"> Welcome You! </h1>  
+    <h1 class="display-4"> Welcome You!! </h1>  
     @endloggedIn
 
     <div>
@@ -22,7 +22,8 @@ Index Page
     @loggedIn        
     <p class="lead">Select your operation</p>
     <div class='row'>
-        
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('user-check-page') }}" role="button">Check Users</a>
+        <a class="col mt-4 ml-4 btn btn-info btn-lg text-white" href="{{ route('grant-leave-page') }}" role="button">Grant Leave</a>  
     </div>
     @else 
     <p class="lead">Please login or ask your admin to create account</p>
