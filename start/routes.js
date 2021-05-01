@@ -40,19 +40,19 @@ Route.group(() => {
         Route.post('/edit/:id', 'AdminController.update').as('user-edit')                      
         Route.get('/delete/confirm/:id', ({view, params}) => {return view.render('admin.delete', {userid: params.id})}).as('user-delete-page')   
         Route.get('/delete/:id', 'AdminController.delete').as('user-delete')
-}).prefix('/admin/user').middleware(['auth']);
+}).prefix('/admin/user').middleware(['auth','isAdmin']);
 
 // MANAGER ROUTES
 Route.group(()=>{
     Route.get('/list', 'ManagerController.readUser').as('user-check-page')
     Route.get('/leave', 'ManagerController.readLeave').as('grant-leave-page')
     Route.post('/leave/:id', 'ManagerController.update').as('leave-update')
-}).prefix('/manager').middleware(['auth']);
+}).prefix('/manager').middleware(['auth', 'isManager']);
 
 // EMPLOYEE ROUTES
 Route.group(()=>{
     Route.on('/task').render('employee.task').as('task-page')
     Route.get('/leave', 'EmployeeController.read').as('leave-page')
     Route.post('/leave', 'EmployeeController.create').as('leave-add')
-}).prefix('/employee').middleware(['auth']);
+}).prefix('/employee').middleware(['auth', 'isEmployee']);
 

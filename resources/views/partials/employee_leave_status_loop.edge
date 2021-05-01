@@ -4,4 +4,14 @@
 <td>{{leave.start_date}}</td>
 <td>{{leave.end_date}}</td>
 <td>{{leave.manager}}</td>
-<td>{{leave.status}}</td>
+<td>
+    @if(leave.status==='grant')
+    granted
+    @elseif(leave.status==='apply')
+    applied
+    @elseif(leave.status==='review')
+    reviewing
+    @else
+    cancelled
+    @endif    
+</td>
