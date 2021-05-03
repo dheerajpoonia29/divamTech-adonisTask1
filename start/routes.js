@@ -17,7 +17,8 @@
 const Route = use('Route')
 
 // HOME PAGE ROUTE
-Route.on('/').render('index')
+// Route.on('/').render('index')
+Route.get('/', 'AdminController.index')
 Route.on('/admin-page').render('admin').middleware(['auth']);
 Route.on('/manager-page').render('manager').middleware(['auth']);
 Route.on('/employee-page').render('employee').middleware(['auth']);

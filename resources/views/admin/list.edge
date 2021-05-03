@@ -31,6 +31,7 @@ List User Page
         </thead>
         <tbody>
           @each(user in users)
+          @if(user.role!=='admin')
           <tr>
             <th scope="row">{{ ($loop.index + 1) }}</th>
             <td>{{user.username}}</td>
@@ -51,6 +52,7 @@ List User Page
               </td>
             @endif
           </tr>
+          @endif          
           @endeach
         </tbody>
     </table>

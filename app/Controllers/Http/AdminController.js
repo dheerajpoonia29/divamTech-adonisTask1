@@ -5,10 +5,22 @@ const Database = use('Database')
 const User = use('App/Models/User');
 
 class UserController {
+    async index({view, session}){
+        res_success=null; res_danger=null; res_warning=null;
+
+        // if application used first time then automatically create admin user
+        let users = await User.all();
+        users = users.toJSON()
+        console.log(users)
+        if(users.length<1){
+            await User.create({username: 'u1', email:'u1@gmail.com', password:'u1', role:'admin'});
+        }
+
+        session.flash({ success: 'admin created with email=u1@gmail.com, password=u1, go ahead for login', danger: res_danger, warning: res_warning});
+        return view.render('index')
+    }
+
     async create({response, request, session}) {
-        // let userId = await Database
-        //                         .table('users')
-        //                         .insert(request.only(['username', 'email', 'role', 'password']))
         res_success=null; res_danger=null; res_warning=null;
 
         try{
